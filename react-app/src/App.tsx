@@ -1,11 +1,23 @@
-import ListGroup from "./components/ListGroup";
+import { useState } from "react";
+import Alert from "./components/alert";
+import Buttons from "./components/buttons";
 
 function App() {
-	const items = ["new york", "los angeles", "chicago", "houston", "phoenix"];
+	const [showAlert, setShowAlert] = useState(false);
+
+	const showAlertPopUp = () => {
+		setShowAlert((prevShowAlert) => !prevShowAlert);
+		console.log(showAlert);
+	};
+
+	const hideAlertPopUp = () => {
+		setShowAlert(false);
+	};
 
 	return (
 		<div>
-			<ListGroup items={items} heading="Cities" />
+			{showAlert && <Alert onClick={hideAlertPopUp} />}
+			<Buttons type="success" onClick={showAlertPopUp} />
 		</div>
 	);
 }
